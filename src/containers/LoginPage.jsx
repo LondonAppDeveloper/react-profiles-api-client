@@ -16,8 +16,6 @@ class LoginPage extends Component {
   }
 
   handleSubmit(e) {
-    //console.log(this.state);
-    console.log('Hello');
     e.preventDefault();
     console.log(this.state)
   }
