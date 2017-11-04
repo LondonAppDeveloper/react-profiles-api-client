@@ -4,14 +4,30 @@ import LoginForm from '../components/LoginForm';
 
 
 class LoginPage extends Component {
-
-  handleSubmit(e) {
-    console.log('Hello');
-    e.preventDefault();
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    }
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleFieldChange(e) {
-    console.log(e);
+  handleSubmit(e) {
+    //console.log(this.state);
+    console.log('Hello');
+    e.preventDefault();
+    console.log(this.state)
+  }
+
+  handleEmailChange(email) {
+    this.setState({email: email});
+  }
+
+  handlePasswordChange(password) {
+    this.setState({password: password});
   }
 
   render() {
@@ -20,7 +36,10 @@ class LoginPage extends Component {
         <h2>Login Page</h2>
         <LoginForm
           onSubmit={this.handleSubmit}
-          onFieldChange={this.handleFieldChange}
+          onEmailChange={this.handleEmailChange}
+          onPasswordChange={this.handlePasswordChange}
+          emailText={this.state.email}
+          passwordText={this.state.password}
         />
       </div>
     );
