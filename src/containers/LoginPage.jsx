@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import LoginForm from '../components/LoginForm';
 
@@ -7,8 +8,8 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: 'mark@winterbottom.me',
+      password: 'Awesome1'
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -17,7 +18,14 @@ class LoginPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state)
+    axios.post(
+      'http://127.0.0.1:8080/api/login/',
+      this.state
+    ).then(function(res) {
+      console.log('Success! ', res);
+    }).catch(function(res) {
+      console.log('Failure! ', res);
+    });
   }
 
   handleEmailChange(email) {
