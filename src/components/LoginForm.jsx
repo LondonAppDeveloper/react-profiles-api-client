@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleEmailChange(e) {
-    this.props.onEmailChange(e.target.value);
+  handleUsernameChange(e) {
+    this.props.onUsernameChange(e.target.value);
   }
 
   handlePasswordChange(e) {
@@ -29,8 +29,8 @@ class LoginForm extends Component {
             type="email"
             name="email"
             placeholder="Email Address"
-            value={this.props.emailText}
-            onChange={this.handleEmailChange}
+            value={this.props.usernameText}
+            onChange={this.handleUsernameChange}
           /> <br />
           <input
             type="password"

@@ -8,10 +8,10 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'mark@winterbottom.me',
+      username: 'mark@winterbottom.me',
       password: 'Awesome1'
     }
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,13 +23,13 @@ class LoginPage extends Component {
       this.state
     ).then(function(res) {
       console.log('Success! ', res);
-    }).catch(function(res) {
-      console.log('Failure! ', res);
+    }).catch(function(err) {
+      console.log(err.response);
     });
   }
 
-  handleEmailChange(email) {
-    this.setState({email: email});
+  handleUsernameChange(username) {
+    this.setState({username: username});
   }
 
   handlePasswordChange(password) {
@@ -42,9 +42,9 @@ class LoginPage extends Component {
         <h2>Login Page</h2>
         <LoginForm
           onSubmit={this.handleSubmit}
-          onEmailChange={this.handleEmailChange}
+          onUsernameChange={this.handleUsernameChange}
           onPasswordChange={this.handlePasswordChange}
-          emailText={this.state.email}
+          usernameText={this.state.username}
           passwordText={this.state.password}
         />
       </div>
