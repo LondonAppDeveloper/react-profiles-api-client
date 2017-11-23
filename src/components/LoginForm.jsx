@@ -24,6 +24,9 @@ class LoginForm extends Component {
   render() {
     return (
       <div>
+        <div>
+          {this.props.errors.non_field_errors}
+        </div>
         <form onSubmit={this.handleSubmit} method="post">
           <input
             type="email"
@@ -45,26 +48,5 @@ class LoginForm extends Component {
     )
   }
 }
-
-
-// const LoginForm = (props) => (
-//   <div>
-//     <form onSubmit={props.onSubmit} method="post">
-//       <input
-//         type="email"
-//         name="email"
-//         placeholder="Email Address"
-//         onChange={props.onEmailChange}
-//       /> <br />
-//       <input
-//         type="password"
-//         name="password"
-//         placeholder="Password"
-//         onChange={props.onPasswordChange}
-//       /><br />
-//       <input type="submit" value="Login" />
-//     </form>
-//   </div>
-// );
 
 export default LoginForm;

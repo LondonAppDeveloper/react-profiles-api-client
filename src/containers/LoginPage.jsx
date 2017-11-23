@@ -9,7 +9,8 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       username: 'mark@winterbottom.me',
-      password: 'Awesome1'
+      password: 'Awesome1',
+      errors: {}
     }
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -18,14 +19,13 @@ class LoginPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({errors: {}})
     axios.post(
-      'http://127.0.0.1:8080/api/login/',
+      'http://127.0.0.1:8000/api/login/',
       this.state
-    ).then(function(res) {
-      console.log('Success! ', res);
-    }).catch(function(err) {
-      console.log(err.response);
-    });
+    )
+      .then((res) => console.log(res))
+      .catch((err) => this.setState({errors: err.response.data}));
   }
 
   handleUsernameChange(username) {
@@ -46,6 +46,7 @@ class LoginPage extends Component {
           onPasswordChange={this.handlePasswordChange}
           usernameText={this.state.username}
           passwordText={this.state.password}
+          errors={this.state.errors}
         />
       </div>
     );
