@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Form, Button, Message } from 'semantic-ui-react';
+
 
 class LoginForm extends Component {
   constructor(props) {
@@ -24,26 +26,33 @@ class LoginForm extends Component {
   render() {
     return (
       <div>
-        <div>
-          {this.props.errors.non_field_errors}
-        </div>
-        <form onSubmit={this.handleSubmit} method="post">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={this.props.usernameText}
-            onChange={this.handleUsernameChange}
-          /> <br />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.props.passwordText}
-            onChange={this.handlePasswordChange}
-          /><br />
-          <input type="submit" value="Login" />
-        </form>
+        <Form onSubmit={this.handleSubmit} error={this.props.errors !== undefined}>
+          <Form.Field>
+            <Form.Input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={this.props.usernameText}
+              onChange={this.handleUsernameChange}
+              error={this.props.errors.username !== undefined}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Form.Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.props.passwordText}
+              onChange={this.handlePasswordChange}
+              error={this.props.errors.password !== undefined}
+            />
+          </Form.Field>
+          <Message
+            error
+            list={this.props.errors.non_field_errors}
+          />
+          <Button type="submit">Login</Button>
+        </Form>
       </div>
     )
   }
