@@ -12,8 +12,6 @@ class LoginPage extends Component {
       password: 'Awesome1',
       errors: {}
     }
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -28,22 +26,14 @@ class LoginPage extends Component {
       .catch((err) => this.setState({errors: err.response.data}));
   }
 
-  handleUsernameChange(username) {
-    this.setState({username: username});
-  }
-
-  handlePasswordChange(password) {
-    this.setState({password: password});
-  }
-
   render() {
     return (
       <div>
         <h2>Login Page</h2>
         <LoginForm
           onSubmit={this.handleSubmit}
-          onUsernameChange={this.handleUsernameChange}
-          onPasswordChange={this.handlePasswordChange}
+          onUsernameChange={(username) => this.setState({username: username})}
+          onPasswordChange={(password) => this.setState({password: password})}
           usernameText={this.state.username}
           passwordText={this.state.password}
           errors={this.state.errors}
