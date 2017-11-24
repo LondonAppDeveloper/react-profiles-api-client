@@ -12,7 +12,8 @@ class RegistrationPage extends Component {
       email: 'mark@winterbottom.me',
       password: 'Awesome1',
       password2: 'Awesome1',
-      errors: {}
+      errors: {},
+      loading: false
     }
     this.register = this.register.bind(this);
     this.successMessage = null;
@@ -40,14 +41,19 @@ class RegistrationPage extends Component {
       password: this.state.password,
     }
 
+    this.setState({loading: true});
     axios.post(
       'http://127.0.0.1:8000/api/profile/',
       data
     )
-      .then((res) => this.setState({successMessage: 'Registration Successful.'}))
+      .then((res) => {
+        this.setState({successMessage: 'Registration Successful.'});
+        this.setState({loading: false});
+      })
       .catch((err) => {
         this.setState({errors: err.response.data});
         console.log(err.response.data);
+        this.setState({loading: false});
       });
   }
 
@@ -67,6 +73,7 @@ class RegistrationPage extends Component {
           password2Text={this.state.password2}
           errors={this.state.errors}
           successMessage={this.state.successMessage}
+          loading={this.state.loading}
         />
       </div>
     )

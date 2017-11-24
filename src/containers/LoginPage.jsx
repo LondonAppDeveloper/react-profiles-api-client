@@ -24,12 +24,19 @@ class LoginPage extends Component {
       password: this.state.password
     };
 
+    this.setState({loading: true});
     axios.post(
       'http://127.0.0.1:8000/api/login/',
       data
     )
-      .then((res) => console.log(res))
-      .catch((err) => this.setState({errors: err.response.data}));
+      .then((res) => {
+        console.log(res);
+        this.setState({loading: false});
+      })
+      .catch((err) => {
+        this.setState({errors: err.response.data});
+        this.setState({loading: false});
+      });
   }
 
   render() {
@@ -43,6 +50,7 @@ class LoginPage extends Component {
           emailText={this.state.email}
           passwordText={this.state.password}
           errors={this.state.errors}
+          loading={this.state.loading}
         />
       </div>
     );

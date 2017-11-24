@@ -3,41 +3,41 @@ import React, { Component } from 'react';
 import { Form, Button, Message } from 'semantic-ui-react';
 
 
-class LoginForm extends Component {
-
-  render() {
-    return (
-      <div>
-        <Form onSubmit={(e) => this.props.onSubmit(e)} error={this.props.errors !== undefined}>
-          <Form.Field>
-            <Form.Input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={this.props.emailText}
-              onChange={(e) => this.props.onEmailChange(e.target.value)}
-              error={this.props.errors.username !== undefined}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Form.Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.props.passwordText}
-              onChange={(e) => this.props.onPasswordChange(e.target.value)}
-              error={this.props.errors.password !== undefined}
-            />
-          </Form.Field>
-          <Message
-            error
-            list={this.props.errors.non_field_errors}
+const LoginForm = (props) => {
+  return (
+    <div>
+      <Form
+        onSubmit={(e) => props.onSubmit(e)} error={props.errors !== undefined}
+        loading={props.loading}
+      >
+        <Form.Field>
+          <Form.Input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={props.emailText}
+            onChange={(e) => props.onEmailChange(e.target.value)}
+            error={props.errors.username !== undefined}
           />
-          <Button type="submit">Login</Button>
-        </Form>
-      </div>
-    )
-  }
+        </Form.Field>
+        <Form.Field>
+          <Form.Input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={props.passwordText}
+            onChange={(e) => props.onPasswordChange(e.target.value)}
+            error={props.errors.password !== undefined}
+          />
+        </Form.Field>
+        <Message
+          error
+          list={props.errors.non_field_errors}
+        />
+        <Button type="submit">Login</Button>
+      </Form>
+    </div>
+  )
 }
 
 export default LoginForm;

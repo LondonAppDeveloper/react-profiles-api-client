@@ -9,6 +9,7 @@ const RegForm = (props) => {
       <Form
         onSubmit={(e) => props.onSubmit(e)}
         success={props.successMessage !== undefined}
+        loading={props.loading}
       >
         <Message success header={props.successMessage} />
         <Form.Field>
