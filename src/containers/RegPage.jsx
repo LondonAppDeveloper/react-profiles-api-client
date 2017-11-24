@@ -49,6 +49,7 @@ class RegistrationPage extends Component {
       .then((res) => {
         this.setState({successMessage: 'Registration Successful.'});
         this.setState({loading: false});
+
       })
       .catch((err) => {
         this.setState({errors: err.response.data});

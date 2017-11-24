@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authToken: ''
+      authToken: null
     };
   }
 
@@ -53,7 +53,12 @@ class App extends Component {
             </Menu.Item>
           </Menu>
           <Route exact path='/' component={HomePage} />
-          <Route path="/login" component={LoginPage} />
+          <Route path="/login" render={(props) => (
+            <LoginPage
+              {...props}
+              setAuthToken={(token) => this.setState({authToken: token})}
+            />
+          )}/>
           <Route path='/register' component={RegPage} />
         </div>
       </Router>

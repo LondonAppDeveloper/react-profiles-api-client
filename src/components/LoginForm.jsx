@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Form, Button, Message } from 'semantic-ui-react';
 

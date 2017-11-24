@@ -31,6 +31,8 @@ class LoginPage extends Component {
     )
       .then((res) => {
         console.log(res);
+        this.props.setAuthToken(res.data.token);
+        console.log(res.data.token);
         this.setState({loading: false});
       })
       .catch((err) => {
