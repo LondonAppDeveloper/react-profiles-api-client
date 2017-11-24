@@ -8,7 +8,7 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'mark@winterbottom.me',
+      email: 'mark@winterbottom.me',
       password: 'Awesome1',
       errors: {}
     }
@@ -18,9 +18,15 @@ class LoginPage extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.setState({errors: {}});
+
+    let data = {
+      username: this.state.email,
+      password: this.state.password
+    };
+
     axios.post(
       'http://127.0.0.1:8000/api/login/',
-      this.state
+      data
     )
       .then((res) => console.log(res))
       .catch((err) => this.setState({errors: err.response.data}));
@@ -32,9 +38,9 @@ class LoginPage extends Component {
         <h2>Login</h2>
         <LoginForm
           onSubmit={this.handleSubmit}
-          onUsernameChange={(username) => this.setState({username: username})}
+          onEmailChange={(email) => this.setState({email: email})}
           onPasswordChange={(password) => this.setState({password: password})}
-          usernameText={this.state.username}
+          emailText={this.state.email}
           passwordText={this.state.password}
           errors={this.state.errors}
         />

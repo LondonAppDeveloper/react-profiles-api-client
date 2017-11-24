@@ -14,8 +14,8 @@ class LoginForm extends Component {
               type="email"
               name="email"
               placeholder="Email Address"
-              value={this.props.usernameText}
-              onChange={(e) => this.props.onUsernameChange(e.target.value)}
+              value={this.props.emailText}
+              onChange={(e) => this.props.onEmailChange(e.target.value)}
               error={this.props.errors.username !== undefined}
             />
           </Form.Field>
