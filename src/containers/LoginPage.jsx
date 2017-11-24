@@ -17,7 +17,7 @@ class LoginPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({errors: {}})
+    this.setState({errors: {}});
     axios.post(
       'http://127.0.0.1:8000/api/login/',
       this.state
@@ -29,7 +29,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <h2>Login Page</h2>
+        <h2>Login</h2>
         <LoginForm
           onSubmit={this.handleSubmit}
           onUsernameChange={(username) => this.setState({username: username})}

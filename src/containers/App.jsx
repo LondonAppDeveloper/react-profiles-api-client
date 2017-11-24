@@ -7,8 +7,10 @@ import {
 import { Menu } from 'semantic-ui-react';
 
 import LoginPage from '../containers/LoginPage';
+import RegPage from '../containers/RegPage';
+
 import HomePage from '../components/HomePage';
-import RegistrationPage from '../components/RegistrationPage';
+
 
 
 class App extends Component {
@@ -52,7 +54,7 @@ class App extends Component {
           </Menu>
           <Route exact path='/' component={HomePage} />
           <Route path="/login" component={LoginPage} />
-          <Route path='/register' component={RegistrationPage} />
+          <Route path='/register' component={RegPage} />
         </div>
       </Router>
     );
