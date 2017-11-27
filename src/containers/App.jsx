@@ -9,8 +9,7 @@ import { Menu } from 'semantic-ui-react';
 
 import LoginPage from '../containers/LoginPage';
 import RegPage from '../containers/RegPage';
-
-import HomePage from '../components/HomePage';
+import HomePage from '../containers/HomePage';
 
 
 
@@ -72,7 +71,9 @@ class App extends Component {
             )
           )} />
 
-          <Route path='/home' component={HomePage} />
+          <Route path='/home' render={(props) => (
+            <HomePage {...props} token={this.state.authToken} />
+          )}/>
           <Route path="/login" render={(props) => (
             <LoginPage
               {...props}
