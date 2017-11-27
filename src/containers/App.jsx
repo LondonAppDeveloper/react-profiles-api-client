@@ -17,13 +17,15 @@ import HomePage from '../components/HomePage';
 class App extends Component {
   constructor(props) {
     super(props);
+    let authToken = localStorage.getItem('token');
     this.state = {
-      authToken: null
+      authToken: authToken
     };
   }
 
-  loggedIn() {
-    return this.state.authToken != null;
+  setAuthToken(token) {
+    this.setState({'authToken': token});
+    localStorage.setItem('token', token);
   }
 
   render() {
@@ -43,29 +45,24 @@ class App extends Component {
             >
               Home
             </Menu.Item>
-
-            <Menu.Menu position="right">
-
               {
                 loggedIn ? (
-                  <Menu.Item as={NavLink} to='/logout' name="logout">
-                    Logout
-                  </Menu.Item>
+                  <Menu.Menu position="right">
+                    <Menu.Item as={NavLink} to='/logout' name="logout">
+                      Logout
+                    </Menu.Item>
+                  </Menu.Menu>
                 ) : (
-                  <Menu.Item as={NavLink} to='/login' name="Login">
-                    Login
-                  </Menu.Item>
+                  <Menu.Menu position="right">
+                    <Menu.Item as={NavLink} to='/login' name="Login">
+                      Login
+                    </Menu.Item>
+                    <Menu.Item as={NavLink} to='/register' name='Register'>
+                      Register
+                    </Menu.Item>
+                  </Menu.Menu>
                 )
               }
-
-              <Menu.Item
-                as={NavLink}
-                to='/register'
-                name='Register'
-              >
-                Register
-              </Menu.Item>
-            </Menu.Menu>
           </Menu>
           <Route exact path="/" render={() => (
             loggedIn ? (
@@ -79,7 +76,7 @@ class App extends Component {
           <Route path="/login" render={(props) => (
             <LoginPage
               {...props}
-              setAuthToken={(token) => this.setState({authToken: token})}
+              setAuthToken={(token) => this.setAuthToken(token)}
             />
           )}/>
           <Route path='/register' component={RegPage} />
