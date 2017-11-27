@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import LoginForm from '../components/LoginForm';
 
@@ -10,7 +11,8 @@ class LoginPage extends Component {
     this.state = {
       email: 'mark@winterbottom.me',
       password: 'Awesome1',
-      errors: {}
+      errors: {},
+      redirectToReferer: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -34,6 +36,7 @@ class LoginPage extends Component {
         this.props.setAuthToken(res.data.token);
         console.log(res.data.token);
         this.setState({loading: false});
+        this.setState({redirectToReferer: true});
       })
       .catch((err) => {
         this.setState({errors: err.response.data});
@@ -42,6 +45,13 @@ class LoginPage extends Component {
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { redirectToReferer } = this.state;
+    if (redirectToReferer) {
+      return (
+        <Redirect to={from} />
+      )
+    }
     return (
       <div>
         <h2>Login</h2>
