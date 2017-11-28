@@ -10,6 +10,7 @@ import { Menu } from 'semantic-ui-react';
 import LoginPage from '../containers/LoginPage';
 import RegPage from '../containers/RegPage';
 import HomePage from '../containers/HomePage';
+import './App.css'
 
 
 
@@ -63,24 +64,26 @@ class App extends Component {
                 )
               }
           </Menu>
-          <Route exact path="/" render={() => (
-            loggedIn ? (
-              <Redirect to="/home" />
-            ) : (
-              <Redirect to="/login" />
-            )
-          )} />
+          <div className="content">
+            <Route exact path="/" render={() => (
+              loggedIn ? (
+                <Redirect to="/home" />
+              ) : (
+                <Redirect to="/login" />
+              )
+            )} />
 
-          <Route path='/home' render={(props) => (
-            <HomePage {...props} token={this.state.authToken} />
-          )}/>
-          <Route path="/login" render={(props) => (
-            <LoginPage
-              {...props}
-              setAuthToken={(token) => this.setAuthToken(token)}
-            />
-          )}/>
-          <Route path='/register' component={RegPage} />
+            <Route path='/home' render={(props) => (
+              <HomePage {...props} token={this.state.authToken} />
+            )}/>
+            <Route path="/login" render={(props) => (
+              <LoginPage
+                {...props}
+                setAuthToken={(token) => this.setAuthToken(token)}
+              />
+            )}/>
+            <Route path='/register' component={RegPage} />
+          </div>
         </div>
       </Router>
     );
