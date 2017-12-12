@@ -28,6 +28,12 @@ class App extends Component {
     localStorage.setItem('token', token);
   }
 
+  logout() {
+    console.log('logout');
+    this.setState({authToken: null});
+    localStorage.setItem('token', null);
+  }
+
   render() {
     const loggedIn = this.state.authToken != null;
     return (
@@ -48,7 +54,7 @@ class App extends Component {
               {
                 loggedIn ? (
                   <Menu.Menu position="right">
-                    <Menu.Item as={NavLink} to='/logout' name="logout">
+                    <Menu.Item onClick={() => this.logout()} name="logout">
                       Logout
                     </Menu.Item>
                   </Menu.Menu>

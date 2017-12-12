@@ -16,6 +16,9 @@ class HomePage extends Component {
     this.getFeed();
   }
 
+  // componentDidMount()
+  // componentWillUnmount()
+
   getFeed() {
     let fullToken = 'Token ' + this.props.token;
     axios.get(
