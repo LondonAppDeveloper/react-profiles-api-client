@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <Menu stackable>
-          <Menu.Item header>BYOB Client</Menu.Item>
+          <Menu.Item header>BYOB React Client</Menu.Item>
           <Menu.Item as={NavLink} to="/" name="Home" exact>
             Home
           </Menu.Item>
