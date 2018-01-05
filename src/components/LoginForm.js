@@ -46,7 +46,8 @@ LoginForm.propTypes = {
   errors: PropTypes.object,
   onEmailChange: PropTypes.func,
   onPasswordChange: PropTypes.func,
-  passwordText: PropTypes.string,
+  password: PropTypes.string,
+  email: PropTypes.string,
   loading: PropTypes.bool
 };
 
